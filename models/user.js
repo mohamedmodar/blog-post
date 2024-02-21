@@ -27,9 +27,10 @@ const joi =require("joi");
     },
     profilePicture :{
         type: Object,
+        default:{
         url: "https://woodfibreinsulation.co.uk/wp-content/uploads/2017/04/blank-profile-picture-973460-1-1-768x768.png",
         publicId : null
-    },
+    }},
     //Because it have a one attribute
     bio :{
         type: String

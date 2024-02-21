@@ -34,7 +34,7 @@ function verfiyTokenAndAdmin(req,res,next){
         }
     })
 }
-// VERFIY tOKEN and admin 
+// VERFIY tOKEN and user 
 
 function verfiyTokenAndOnlyUser(req,res,next){
     verfiyToken(req,res, ()=>{
@@ -47,6 +47,22 @@ function verfiyTokenAndOnlyUser(req,res,next){
         }
     })
 }
+//verfit token and authorization
+// VERFIY tOKEN and user or admin
 
-module.exports = {verfiyToken, verfiyTokenAndAdmin , verfiyTokenAndOnlyUser};
+function verfiyTokenAndAuthorization(req,res,next){
+    verfiyToken(req,res, ()=>{
+        if(req.user.id = req.params.id || req.user.isAdmin){
+            next();
+        }
+        else{
+               //403 means you have no access as a user
+      return res.status(403).json({message : "not allowed, only user himself or admin"})
+        }
+    })
+}
+module.exports = {verfiyToken,
+                    verfiyTokenAndAdmin ,
+                     verfiyTokenAndOnlyUser, 
+                    verfiyTokenAndAuthorization};
 
